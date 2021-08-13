@@ -8,7 +8,8 @@ using ld = long double;
 
 using namespace std;
 
-template<int MOD>
+const int MOD = 1000;
+
 struct matrix
 {
 	int N, M;
@@ -24,7 +25,7 @@ struct matrix
 	matrix operator* (const matrix& m) const
 	{
 		if (M != m.N) exit(1);
-		matrix<MOD> res(N, m.M);
+		matrix res(N, m.M);
 		for (int i=0; i < N; i++) for (int j=0; j < m.M; j++) {
 			for (int k=0; k < M; k++) {
 				res.mat[i][j] += mat[i][k] * m.mat[k][j] % MOD;
@@ -36,8 +37,8 @@ struct matrix
 
 	matrix pow(ll n)
 	{
-		matrix<MOD> res(N);
-		matrix<MOD> mul = *this;
+		matrix res(N);
+		matrix mul = *this;
 		while (n) {
 			if (n % 2) res = res * mul;
 			mul = mul * mul;
@@ -64,10 +65,10 @@ int main()
 	int N;
 	ll M;
 	cin >> N >> M;
-	matrix<1000> a(N, N);
+	matrix a(N, N);
 	for (int i=0; i < N; i++) for (int j=0; j < N; j++)
 		cin >> a.mat[i][j];
-	matrix<1000> ans = a.pow(M);
+	matrix ans = a.pow(M);
 	ans.print();
 
     return 0;
