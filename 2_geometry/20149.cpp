@@ -89,6 +89,8 @@ bool lineIntersection(Point a, Point b, Point c, Point d, Point& r)
 	Point ty = {a.y - b.y, c.y - d.y};
 	r = { t * tx, t * ty};
 	r = r / p;
+#elif 0
+	r = a + (b - a) * ((c - a) * (d - c)) / ((b - a) * (d - c));
 #else
 	Point vba = a - b;
 	Point vdc = c - d;
