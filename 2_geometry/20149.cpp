@@ -65,8 +65,6 @@ bool lineIntersection(Point a, Point b, Point c, Point d, Point& r)
 	ll abd = ccw(a, b, d);
 	ll cda = ccw(c, d, a);
 	ll cdb = ccw(c, d, b);
-	ll ab = abc * abd;
-	ll cd = cda * cdb;
 
 	if ((abc | abd | cda | cdb) == 0) {
 		if (a > b) swap(a, b);
@@ -77,8 +75,13 @@ bool lineIntersection(Point a, Point b, Point c, Point d, Point& r)
 		return true;
 	}
 
-	if (ab > 0 || cd > 0) return false;
+	if (abc * abd > 0 || cda * cdb > 0) return false;
 
+/*
+ * Px= (x1*y2 - y1*x2)*(x3-x4) - (x1-x2)*(x3*y4 - y3*x4)
+ * Py= (x1*y2 - y1*x2)*(y3-y4) - (y1-y2)*(x3*y4 - y3*x4)
+ * p = (x1-x2)*(y3-y4) - (y1-y2)*(x3-x4)
+ */
 #if 0
 	ll p = ((a - b) * (c - d));
 	Point t = {a * b, c * d};
@@ -117,4 +120,3 @@ int main()
 	}
     return 0;
 }
-
