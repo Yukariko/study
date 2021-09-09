@@ -24,11 +24,10 @@ int main()
 
     vector<int> g(*max_element(a.begin(), a.end()) + 1);
 
-    for (int i=1; i < g.size(); i++) {
+    for (int i=1, e=g.size(); i < e; i++) {
         int actions = 0;
-        for (int fb : f) {
-            if (fb <= i) actions |= 1 << g[i - fb];
-            else break;
+        for (int j=0; f[j] <= i; j++) {
+            actions |= 1 << g[i - f[j]];
         }
         actions = ~actions;
         g[i] = 31 - __builtin_clz(actions & -actions);
