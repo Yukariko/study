@@ -14,7 +14,7 @@ struct DisjointSet {
 	DisjointSet(int N)
 	{
 		group.resize(N);
-		for(int i=0; i < N; i++)
+		for (int i=0; i < N; i++)
 			group[i] = i;
 
 		count.resize(N, 1);
@@ -22,7 +22,7 @@ struct DisjointSet {
 
 	int find(int n)
 	{
-		if(group[n] == n)
+		if (group[n] == n)
 			return n;
 		return group[n] = find(group[n]);
 	}
@@ -31,8 +31,7 @@ struct DisjointSet {
 	{
 		p = find(p);
 		q = find(q);
-		if(p != q)
-		{
+		if(p != q) {
 			group[p] = q;
 			count[q] += count[p];
 		}
@@ -43,8 +42,8 @@ struct DisjointSet {
 	{
 		vector<bool> check(group.size(), false);
 		int ans = 0;
-		for(int i=0; i < group.size(); i++)
-			if(check[find(i)] == false)
+		for (int i=0; i < group.size(); i++)
+			if (check[find(i)] == false)
 				check[find(i)] = true, ans++;
 		return ans;
 	}
@@ -71,11 +70,11 @@ int main()
             cin >> a >> b;
 
 			int ai, bi;
-			if(check.count(a) == 0)
+			if (check.count(a) == 0)
 				check[a] = idx++;
 			ai = check[a];
 
-			if(check.count(b) == 0)
+			if (check.count(b) == 0)
 				check[b] = idx++;
 			bi = check[b];
 
